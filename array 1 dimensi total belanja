@@ -1,1 +1,64 @@
-# Tugas-array-1D
+import java.util.Scanner;
+
+public class BelanjaDiskon {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        int n;
+        System.out.print("Masukkan jumlah barang (min 5): ");
+        n = input.nextInt();
+
+        if (n < 5) {
+            System.out.println("Minimal harus 5 barang!");
+            return;
+        }
+
+        String[] nama = new String[n];
+        double[] harga = new double[n];
+
+        double total = 0;
+
+        // Input data
+        for (int i = 0; i < n; i++) {
+            input.nextLine(); // clear buffer
+            System.out.print("Nama barang ke-" + (i+1) + ": ");
+            nama[i] = input.nextLine();
+
+            System.out.print("Harga barang ke-" + (i+1) + ": ");
+            harga[i] = input.nextDouble();
+
+            total += harga[i];
+        }
+
+        // Hitung diskon (percabangan)
+        double diskon = 0;
+        if (total >= 100000) {
+            diskon = total * 0.10;
+        } else if (total >= 50000) {
+            diskon = total * 0.05;
+        } else {
+            diskon = 0;
+        }
+
+        double grandTotal = total - diskon;
+
+        // Hitung rata-rata
+        double rata = total / n;
+
+        // Cari nilai minimum
+        double min = harga[0];
+        for (int i = 1; i < n; i++) {
+            if (harga[i] < min) {
+                min = harga[i];
+            }
+        }
+
+        // Output
+        System.out.println("\n=== HASIL ===");
+        System.out.println("Total Belanja : Rp " + total);
+        System.out.println("Diskon        : Rp " + diskon);
+        System.out.println("Grand Total   : Rp " + grandTotal);
+        System.out.println("Rata-rata     : Rp " + rata);
+        System.out.println("Harga Minimum : Rp " + min);
+    }
+}
