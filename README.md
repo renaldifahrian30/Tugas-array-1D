@@ -1,1 +1,0 @@
-# Tugas-array-1D
